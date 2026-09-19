@@ -1,0 +1,299 @@
+<!doctype html>
+<html dir="rtl" lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>پنل مدیریت — کازمالجی ورلد</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#14101f;--paper:#f6f2ea;--panel:#fff;--red:#e4002b;--blue:#2f5fe0;--violet:#7a3ff0;--muted:#6b6577;--ok:#1f9d57;--bg:#0f0d16}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Vazirmatn",Tahoma,sans-serif;background:var(--bg);color:#e9e4f5}
+.wrap{max-width:1200px;margin:0 auto;padding:20px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.top h1{font-size:20px;font-weight:800;margin:0}
+.top .sub{font-size:12px;color:var(--muted);margin-top:3px}
+.btn{cursor:pointer;border:none;border-radius:12px;font-weight:800;font-size:14px;padding:11px 18px;font-family:inherit;transition:.15s}
+.btn-pub{background:linear-gradient(90deg,var(--red),var(--violet));color:#fff}
+.btn-pub:hover{filter:brightness(1.1)}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.16)}
+.btn-sm{padding:8px 12px;font-size:13px}
+.btn-danger{background:rgba(228,0,43,.18);color:#ff8fa0}
+.btn-danger:hover{background:rgba(228,0,43,.32)}
+fieldset{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px;margin:16px 0}
+legend{font-weight:800;font-size:15px;padding:0 8px}
+label{display:block;font-size:12px;color:var(--muted);font-weight:600;margin:12px 0 5px}
+input,textarea,select{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;padding:10px 12px;font-family:inherit;font-size:14px}
+input:focus,textarea:focus{outline:none;border-color:var(--blue)}
+textarea{min-height:90px;resize:vertical}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:14px;margin:12px 0}
+.card .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.card h3{margin:0;font-size:15px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filehint{font-size:11px;color:var(--muted);margin-top:4px}
+.msg{margin:14px 0;padding:12px 14px;border-radius:12px;font-weight:600;font-size:14px;display:none}
+.msg.ok{display:block;background:rgba(31,157,87,.15);color:#7fe0a5;border:1px solid rgba(31,157,87,.4)}
+.msg.err{display:block;background:rgba(228,0,43,.15);color:#ff9db0;border:1px solid rgba(228,0,43,.4)}
+#preview{width:100%;height:560px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:#fff}
+.muted{color:var(--muted);font-size:12px}
+.hidden{display:none}
+.code{font-family:ui-monospace,monospace;font-size:12px;background:rgba(0,0,0,.3);padding:2px 6px;border-radius:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h1>پنل مدیریت کازمالجی ورلد</h1>
+      <div class="sub">ویرایش محتوا + انتشار به <span class="code">shadow01cyber.github.io/kazamage-world</span></div>
+    </div>
+    <div class="row">
+      <input id="code" type="password" placeholder="کد دسترسی" style="width:150px">
+      <button class="btn btn-ghost" onclick="preview()">پیش‌نمایش</button>
+      <button class="btn btn-pub" id="pubBtn" onclick="publish()">انتشار 🚀</button>
+    </div>
+  </div>
+
+  <div id="msg" class="msg"></div>
+
+  <fieldset id="settings"><legend>تنظیمات سایت</legend>
+    <div class="grid2">
+      <div><label>نام برند</label><input data-k="brand"></div>
+      <div><label>آدرس نمایشی (شماره دامنه)</label><input data-k="brandUrl"></div>
+    </div>
+    <label>عنوان صفحه (تب مرورگر)</label><input data-k="title">
+    <label>توضیحات SEO</label><textarea data-k="description" style="min-height:60px"></textarea>
+    <div class="grid2">
+      <div><label>متن هیرو (دو ستاره = کلمه‌ی زرد)</label><input data-k="heroTitle"></div>
+      <div><label>زیرنویس هیرو</label><input data-k="heroSub"></div>
+    </div>
+    <div class="grid2">
+      <div><label>لینک آرشیو تلگرام</label><input data-k="tg_url"></div>
+      <div><label>برچسب تلگرام</label><input data-k="tg_label"></div>
+    </div>
+    <div class="grid2">
+      <div><label>متن فوتر (حق تألیق)</label><input data-k="footerRights"></div>
+      <div><label>برچسب دکمه‌ی تلگرام</label><input data-k="tg_btn"></div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>مقالات</legend>
+    <div id="articles"></div>
+    <button class="btn btn-ghost btn-sm" onclick="addArticle()">＋ مقاله اضافه کن</button>
+  </fieldset>
+
+  <fieldset>
+    <legend>گالری</legend>
+    <div id="gallery"></div>
+    <button class="btn btn-ghost btn-sm" onclick="addGallery()">＋ آیتم گالری اضافه کن</button>
+  </fieldset>
+
+  <fieldset>
+    <legend>پیش‌نمایش زنده</legend>
+    <iframe id="preview" title="preview"></iframe>
+    <div class="muted" style="margin-top:8px">با «پیش‌نمایش» یا هر تغییر، اینجا به‌روز میشه. برای اینکه تغییر پایدار بشه، «انتشار» رو بزن.</div>
+  </fieldset>
+</div>
+
+<script>
+/* ====== state ====== */
+let DATA = null;
+const LS_KEY = "kzm_draft";
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function bold(s){return esc(s).replace(/\*\*(.+?)\*\*/g,'<span style="color:#ffd23f">$1</span>');}
+
+async function load(){
+  try{
+    const r = await fetch('site.json',{cache:'no-store'});
+    DATA = await r.json();
+  }catch(e){ DATA = seedData(); }
+  // draft?
+  const draft = localStorage.getItem(LS_KEY);
+  if(draft){ DATA = JSON.parse(draft); showMsg('نسخه‌ی ذخیره‌شده‌ی محلی‌ات بارگذاری شد. انتشار بزن تا پایدار بشه.', true); }
+  bindSettings(); renderArticles(); renderGallery(); refreshPreview();
+}
+function seedData(){return {"site":{},"articles":[],"gallery":[]};}
+
+function bindSettings(){
+  const s = DATA.site||{};
+  const m = {
+    brand:s.brand, brandUrl:s.brandUrl, title:s.title, description:s.description,
+    heroTitle:s.heroTitle, heroSub:s.heroSub,
+    tg_url:(s.telegram||{}).url, tg_label:(s.telegram||{}).label,
+    tg_btn:(s.telegram||{}).buttonLabel, footerRights:s.footerRights
+  };
+  document.querySelectorAll('#settings [data-k]').forEach(el=>{
+    const k=el.dataset.k; el.value = m[k]!=null?m[k]:'';
+    el.oninput=()=>{ collectSettings(); refreshPreview(); saveDraft(); };
+  });
+}
+function collectSettings(){
+  DATA.site = DATA.site||{};
+  DATA.site.telegram = DATA.site.telegram||{};
+  document.querySelectorAll('#settings [data-k]').forEach(el=>{
+    const k=el.dataset.k, v=el.value;
+    if(k==='tg_url') DATA.site.telegram.url=v;
+    else if(k==='tg_label') DATA.site.telegram.label=v;
+    else if(k==='tg_btn') DATA.site.telegram.buttonLabel=v;
+    else if(k==='footerYear') DATA.site.footerYear=v;
+    else DATA.site[k]=v;
+  });
+}
+function saveDraft(){ localStorage.setItem(LS_KEY, JSON.stringify(DATA)); }
+
+/* ====== articles ====== */
+function addArticle(a){
+  a = a||{tag:'',image:'',meta:'',title:'',body:'',link:((DATA.site.telegram||{}).url||''),linkLabel:((DATA.site.telegram||{}).buttonLabel||'آرشیو تلگرام')};
+  DATA.articles.push(a);
+  const c=document.createElement('div'); c.className='card'; c.dataset.i=DATA.articles.length-1;
+  c.innerHTML =
+    '<div class="hd"><h3>مقاله '+(DATA.articles.length)+'</h3>'+
+    '<button class="btn btn-danger btn-sm" onclick="delItem(\'articles\',this)">حذف</button></div>'+
+    '<div class="grid2">'+
+      '<div><label>برچسب (مثال: معرفی / گزارش)</label><input data-f="tag" value="'+esc(a.tag)+'"></div>'+
+      '<div><label>متای وقت (مثال: ۱۹ سپتامبر · ۵ دقیقه)</label><input data-f="meta" value="'+esc(a.meta)+'"></div>'+
+    '</div>'+
+    '<label>عنوان</label><input data-f="title" value="'+esc(a.title)+'">'+
+    '<label>متن (هر خط = یک پاراگراف)</label><textarea data-f="body">'+esc(a.body)+'</textarea>'+
+    '<label>عکس (URL یا آپلود)</label>'+
+    '<div class="row"><input data-f="image" value="'+esc(a.image)+'" placeholder="https://..." style="flex:1">'+
+    '<input type="file" accept="image/*" onchange="uploadImg(this,\'+c.dataset.i+'\')" style="width:auto"></div>'+
+    '<div class="filehint">آپلود → خودکار فشرده و به آرشیو سایت push میشه و آدرسش اینجا کپی میگه.</div>'+
+    '<div class="grid2">'+
+      '<div><label>لینک (معمولاً آرشیو تلگرام)</label><input data-f="link" value="'+esc(a.link)+'"></div>'+
+      '<div><label>برچسب دکمه‌ی لینک</label><input data-f="linkLabel" value="'+esc(a.linkLabel||'آرشیو تلگرام')+'"></div>'+
+    '</div>';
+  // wire inputs
+  c.querySelectorAll('[data-f]').forEach(inp=>{
+    inp.oninput=()=>{ DATA.articles[+c.dataset.i][inp.dataset.f]=inp.value; saveDraft(); refreshPreview(); };
+  });
+  document.getElementById('articles').appendChild(c);
+}
+function renderArticles(){ document.getElementById('articles').innerHTML=''; (DATA.articles||[]).forEach(a=>addArticle(a)); }
+
+/* ====== gallery ====== */
+function addGallery(g){
+  g = g||{image:'',title:'',link:((DATA.site.telegram||{}).url||''),linkLabel:((DATA.site.telegram||{}).label||'آرشیو تلگرام')+' ↗'};
+  DATA.gallery.push(g);
+  const c=document.createElement('div'); c.className='card'; c.dataset.i=DATA.gallery.length-1;
+  c.innerHTML =
+    '<div class="hd"><h3>آیتم گالری</h3>'+
+    '<button class="btn btn-danger btn-sm" onclick="delItem(\'gallery\',this)">حذف</button></div>'+
+    '<label>عکس (URL یا آپلود)</label>'+
+    '<div class="row"><input data-f="image" value="'+esc(g.image)+'" placeholder="https://..." style="flex:1">'+
+    '<input type="file" accept="image/*" onchange="uploadImg(this,\'+c.dataset.i+'\')" style="width:auto"></div>'+
+    '<label>عنوان اثر</label><input data-f="title" value="'+esc(g.title)+'">'+
+    '<div class="grid2">'+
+      '<div><label>لینک</label><input data-f="link" value="'+esc(g.link)+'"></div>'+
+      '<div><label>برچسب لینک</label><input data-f="linkLabel" value="'+esc(g.linkLabel||'آرشیو تلگرام ↗')+'"></div>'+
+    '</div>';
+  c.querySelectorAll('[data-f]').forEach(inp=>{ inp.oninput=()=>{ DATA.gallery[+c.dataset.i][inp.dataset.f]=inp.value; saveDraft(); refreshPreview(); }; });
+  document.getElementById('gallery').appendChild(c);
+}
+function renderGallery(){ document.getElementById('gallery').innerHTML=''; (DATA.gallery||[]).forEach(g=>addGallery(g)); }
+function delItem(coll,btn){ const i=DATA[coll][+btn.closest('.card').dataset.i]; DATA[coll].splice(i,1); saveDraft(); renderArticles(); renderGallery(); refreshPreview(); }
+
+/* ====== image upload (compress -> base64 -> server stores in repo) ====== */
+function uploadImg(input, idx){
+  const f = input.files[0]; if(!f) return;
+  const img = new Image(), url = URL.createObjectURL(f);
+  img.onload=()=>{
+    const maxW=1200, scale=Math.min(1, maxW/img.width);
+    const cw=Math.round(img.width*scale), ch=Math.round(img.height*scale);
+    const cv=document.createElement('canvas'); cv.width=cw; cv.height=ch;
+    cv.getContext('2d').drawImage(img,0,0,cw,ch);
+    const b64=cv.toDataURL('image/jpeg',0.82).split(',')[1];
+    const mime='image/jpeg';
+    const fname='img/'+Date.now()+'-'+Math.round(Math.random()*1e5)+'.jpg';
+    // stash for the next publish; also show a note + store as a special marker in the field
+    pendingImages[idx] = { fname, b64, mime, ref:fname };
+    const card=input.closest('.card');
+    const inp=card.querySelector('[data-f="image"]');
+    inp.value='__upload__:'+fname;
+    saveDraft(); refreshPreview();
+    showMsg('عکس فشرده شد. «انتشار» رو بزن تا در سایت بارگذاری و آدرسش قرار بگیره.', true);
+  };
+  img.src=url;
+}
+const pendingImages={};
+function resolveImage(v){
+  if(!v) return '';
+  if(v.startsWith('__upload__:')){
+    const ref=v.split(':')[1];
+    // after publish the server rewrites __upload__ refs; before publish, show a placeholder
+    return '';
+  }
+  return v;
+}
+
+/* ====== preview (build the public page HTML live) ====== */
+function buildPublicHtml(){
+  collectSettings();
+  const s=DATA.site, tg=s.telegram||{};
+  const PAGES='https://shadow01cyber.github.io/kazamage-world/';
+  const imgOf=v=>{ if(v&&v.startsWith('__upload__:')) return PAGES+v.split(':')[1]; return v||''; };
+  return document.getElementById('preview').srcdoc =
+  '<!doctype html><html dir="rtl" lang="fa"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'+
+  '<title>'+esc(s.title||'')+'</title>'+
+  '<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">'+
+  '<style>body{margin:0;font-family:"Vazirmatn",Tahoma,sans-serif;background:#f6f2ea;color:#14101f;line-height:1.9}a{text-decoration:none;color:inherit}img{max-width:100%;display:block}.topbar{background:#14101f;color:#fff;position:sticky;top:0}.hi{max-width:1080px;margin:auto;display:flex;justify-content:space-between;padding:14px 20px;flex-wrap:wrap}.brand{font-weight:800;font-size:22px}.du{font-size:12px;color:#b7a8dd;border:1px solid rgba(255,255,255,.2);padding:4px 10px;border-radius:99px;margin-right:8px}.menu a{padding:8px 14px;border-radius:999px;background:#fff;color:#14101f;font-weight:600;font-size:14px;margin:0 4px;display:inline-block}.hero{background:radial-gradient(120% 140% at 85% 10%,#2a1f45,#14101f 55%);color:#fff;padding:46px 20px}.hero h1{font-size:34px;margin:0 0 8px}.hero p{color:#cfc8e2;max-width:640px}.main{max-width:1080px;margin:auto;padding:20px}.st{font-size:24px;font-weight:800;margin:30px 4px 14px}.art{background:#fff;border-radius:18px;box-shadow:0 12px 30px rgba(20,16,31,.12);overflow:hidden;margin:16px 0;display:grid;grid-template-columns:320px 1fr}.media{position:relative;background:#0e0b16}.media img{width:100%;min-height:240px;object-fit:cover}.tag{position:absolute;top:12px;right:12px;background:#ffd23f;color:#201800;font-weight:800;font-size:12px;padding:5px 10px;border-radius:99px}.body{padding:20px}.meta{color:#6b6577;font-size:13px}.art h2{margin:6px 0}.arc{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,#e4002b,#7a3ff0);color:#fff;font-weight:800;padding:11px 18px;border-radius:14px;margin-top:6px}.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}.gi{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 12px 30px rgba(20,16,31,.12)}.gi img{width:100%;aspect-ratio:4/3;object-fit:cover}.cap{padding:12px}.cap h3{margin:0 0 4px;font-size:15px}.cap a{color:#e4002b;font-weight:700;font-size:13px}footer{background:#14101f;color:#cfc8e2;padding:28px 20px;margin-top:40px}footer a{color:#ffd23f}</style>'+
+  '</head><body>'+
+  '<div class="topbar"><div class="hi"><div class="brand">◆ '+esc(s.brand||'')+(s.brandUrl?' <span class="du">'+esc(s.brandUrl)+'</span>':'')+'</div>'+
+  '<div class="menu"><a href="#">خانه</a><a href="#">مقالات</a><a href="#">گالری</a><a href="'+esc(tg.url||'')+'" target="_blank">'+esc(tg.label||'آرشیو تلگرام')+' ↗</a></div></div></div>'+
+  '<div class="hero"><h1>'+bold(s.heroTitle||'')+'</h1><p>'+esc(s.heroSub||'')+'</p></div>'+
+  '<div class="main">'+
+    '<div class="st">مقالات</div>'+
+    (DATA.articles||[]).map(a=>
+      '<div class="art"><div class="media">'+(a.tag?'<span class="tag">'+esc(a.tag)+'</span>':'')+'<img src="'+esc(imgOf(a.image))+'" onerror="this.style.display=\'none\'"></div>'+
+      '<div class="body">'+(a.meta?'<div class="meta">'+esc(a.meta)+'</div>':'')+'<h2>'+esc(a.title||'')+'</h2>'+
+      esc(a.body||'').split('\n').filter(Boolean).map(p=>'<p>'+esc(p)+'</p>').join('')+
+      (a.link?'<a class="arc" href="'+esc(a.link)+'" target="_blank">↗ '+esc(a.linkLabel||tg.buttonLabel||'آرشیو تلگرام')+'</a>':'')+
+      '</div></div>').join('')+
+    '<div class="st">گالری</div>'+
+    '<div class="gal">'+(DATA.gallery||[]).map(g=>
+      '<div class="gi"><img src="'+esc(imgOf(g.image))+'" onerror="this.style.display=\'none\'"><div class="cap"><h3>'+esc(g.title||'')+'</h3>'+
+      (g.link?'<a href="'+esc(g.link)+'" target="_blank">'+esc(g.linkLabel||tg.label||'آرشیو تلگرام')+' ↗</a>':'')+'</div></div>').join('')+
+    '</div>'+
+  '</div>'+
+  '<footer><div>© '+esc((s.footerYear||'')+' '+esc(s.brand||''))+'</div><div>لینک اثرها: <a href="'+esc(tg.url||'')+'" target="_blank">'+esc(tg.label||'آرشیو تلگرام')+' ↗</a></div></footer>'+
+  '</body></html>';
+}
+function refreshPreview(){ buildPublicHtml(); }
+
+/* ====== publish ====== */
+async function publish(){
+  collectSettings();
+  const code=document.getElementById('code').value.trim();
+  if(!code){ showMsg('کد دسترسی رو وارد کن.', false); return; }
+  const btn=document.getElementById('pubBtn'); btn.disabled=true; btn.textContent='در حال انتشار…';
+  try{
+    // prepare image payloads: replace __upload__ refs with absolute repo urls, collect b64
+    const imgPayload=[];
+    const absOf=(ref)=>'https://shadow01cyber.github.io/kazamage-world/'+ref;
+    const fix=v=>{ if(v&&v.startsWith('__upload__:')){ const ref=v.split(':')[1]; imgPayload.push(pendingImages['__'+ref]); v=absOf(ref); } return v||''; };
+    (DATA.articles||[]).forEach(a=>a.image=fix(a.image));
+    (DATA.gallery||[]).forEach(g=>g.image=fix(g.image));
+    const body={ code, site:DATA.site, articles:DATA.articles, gallery:DATA.gallery, images:imgPayload.filter(Boolean) };
+    const r=await fetch('/publish',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const j=await r.json();
+    if(r.ok && j.ok){ showMsg('انتشار شد ✅ حدود ۴۵ ثانیه تا صفحه‌ی آنلاین به‌روز بشه: shadow01cyber.github.io/kazamage-world', true); localStorage.removeItem(LS_KEY); }
+    else{ showMsg('خطا در انتشار: '+(j.error||('HTTP '+r.code)), false); }
+  }catch(e){
+    // maybe /publish isn't reachable (opened the panel from GitHub Pages origin). Fallback: export.
+    collectSettings();
+    const blob=new Blob([JSON.stringify(DATA,null,2)],{type:'application/json'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='site.json'; a.click();
+    showMsg('نمی‌شه مستقیم انتشار داد (سرور انتشار در دسترس نیست). فایل site.json دانلود شد؛ به بده تا push کنم.', false);
+  }
+  btn.disabled=false; btn.textContent='انتشار 🚀';
+}
+
+function showMsg(t,ok){ const m=document.getElementById('msg'); m.className='msg '+(ok?'ok':'err'); m.textContent=t; m.scrollIntoView({behavior:'smooth'}); }
+
+load();
+</script>
+</body>
+</html>
