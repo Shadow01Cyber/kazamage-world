@@ -1,57 +1,7 @@
 {
   "site": {
-    "title": "کازمالجی ورلد — دنیای کمیک و هنر",
-    "description": "کازمالجی ورلد؛ مجله‌ی فارسی کمیک، انیمه و هنر. مقالات، گالری و آرشیو تلگرام.",
-    "brand": "کازمالجی ورلد",
-    "brandUrl": "www.thecosmologicalworld.ir",
-    "heroTitle": "دنیای **کمیک**، انیمه و هنر — به فارسی",
-    "heroSub": "کازمالجی ورلد؛ جایی برای نوشتن، معرفی و مرور دنیای دنیامون. هر مقاله با تصویر و لینک مستقیم به آرشیو تلگرام.",
-    "telegram": {
-      "url": "https://t.me/Thecosmologicalworldarchive",
-      "label": "آرشیو تلگرام",
-      "buttonLabel": "باز کردن در آرشیو تلگرام"
-    },
-    "footerRights": "کازمالجی ورلد — thecosmologicalworld.ir",
-    "footerYear": "۲۰۲۶"
+    "brand": "کازمالجی ورلد"
   },
-  "articles": [
-    {
-      "tag": "معرفی",
-      "image": "https://placehold.co/680x420/e4002b/ffffff?text=تصویر+مقاله",
-      "meta": "۱۹ سپتامبر ۲۰۲۶ · ۵ دقیقه",
-      "title": "عنوان مقاله‌ی اول اینجاست",
-      "body": "متن توضیحی مقاله. این‌جا می‌تونی هرچیزی بنویسی؛ هر خط جدید یه پاراگراف جدا میشه.\nپس از عکس، لینک آرشیو تلگرام به‌صورت دکمه‌ی رنگی زیرش قرار می‌گیرد.",
-      "link": "https://t.me/Thecosmologicalworldarchive",
-      "linkLabel": "باز کردن در آرشیو تلگرام"
-    },
-    {
-      "tag": "گزارش",
-      "image": "https://placehold.co/680x420/2f5fe0/ffffff?text=تصویر+دوم",
-      "meta": "۱۵ سپتامبر ۲۰۲۶ · ۳ دقیقه",
-      "title": "عنوان مقاله‌ی دوم",
-      "body": "یه نمونه‌ی دیگر. از پنل مدیریتی می‌تونی این بلوک رو کپی و برای مقاله‌ی بعدی استفاده کنی؛ فقط عکس، عنوان، متن و لینک آرشیو تلگرام را عوض کن.",
-      "link": "https://t.me/Thecosmologicalworldarchive",
-      "linkLabel": "باز کردن در آرشیو تلگرام"
-    }
-  ],
-  "gallery": [
-    {
-      "image": "https://placehold.co/480x360/7a3ff0/ffffff?text=اسم+اثر",
-      "title": "اسم اثر",
-      "link": "https://t.me/Thecosmologicalworldarchive",
-      "linkLabel": "آرشیو تلگرام ↗"
-    },
-    {
-      "image": "https://placehold.co/480x360/e4002b/ffffff?text=کتاب",
-      "title": "اسم اثر",
-      "link": "https://t.me/Thecosmologicalworldarchive",
-      "linkLabel": "آرشیو تلگرام ↗"
-    },
-    {
-      "image": "https://placehold.co/480x360/2f5fe0/ffffff?text=انیمه",
-      "title": "اسم اثر",
-      "link": "https://t.me/Thecosmologicalworldarchive",
-      "linkLabel": "آرشیو تلگرام ↗"
-    }
-  ]
+  "articles": [],
+  "gallery": []
 }
