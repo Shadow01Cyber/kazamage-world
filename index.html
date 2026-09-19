@@ -1,0 +1,275 @@
+<!doctype html>
+<html dir="rtl" lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>کازمالجی ورلد — دنیای کمیک و هنر</title>
+<meta name="description" content="کازمالجی ورلد؛ مجله‌ی فارسی کمیک، انیمه و هنر. مقالات، گالری و لینک‌های کمیکام.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   کازمالجی ورلد — قالب تک‌فایلی
+   برای افزودن یک مقاله جدید:
+     1) یک بلوک <article> را کپی کن (از <!-- article --> تا <!-- /article -->)
+     2) جای <img src="..."> عکس خودت را بگذار (آدرس کامل یا فایل محلی)
+     3) متن را ویرایش کن
+     4) لینک کمیکام را در href دکمه‌ی «باز کردن در کمیکام» بگذار
+   همه‌چیز در همین یک فایل است؛ CSS و JS درون آن است.
+   ============================================================ */
+
+:root{
+  --ink:#14101f;
+  --paper:#f6f2ea;
+  --panel:#ffffff;
+  --red:#e4002b;
+  --blue:#2f5fe0;
+  --yellow:#ffd23f;
+  --violet:#7a3ff0;
+  --muted:#6b6577;
+  --radius:18px;
+  --shadow:0 12px 30px rgba(20,16,31,.12);
+  --maxw:1080px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Vazirmatn","IRANSans","Segoe UI",Tahoma,sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.9;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+header.topbar{
+  position:sticky;top:0;z-index:50;
+  background:var(--ink);
+  color:#fff;
+}
+.header-inner{
+  max-width:var(--maxw);margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:14px;padding:14px 20px;
+}
+.brand{
+  font-weight:800;font-size:22px;letter-spacing:.3px;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.brand .brand-url{
+  font-size:12px;font-weight:600;color:#b7a8dd;
+  border:1px solid rgba(255,255,255,.2);
+  padding:4px 10px;border-radius:999px;letter-spacing:.2px;
+}
+.brand .dot{
+  width:14px;height:14px;border-radius:50%;
+  background:var(--red);
+  box-shadow:0 0 0 4px rgba(228,0,43,.25);
+}
+nav.menu{display:flex;gap:8px;flex-wrap:wrap}
+nav.menu a{
+  padding:8px 14px;border-radius:999px;font-weight:600;font-size:14px;
+  color:#efeaf7;transition:.2s;
+}
+nav.menu a:hover{background:#241d33;color:#fff}
+nav.menu a.active{background:var(--red);color:#fff}
+
+.hero{
+  position:relative;overflow:hidden;
+  background:radial-gradient(120% 140% at 85% 10%, #2a1f45 0%, var(--ink) 55%);
+  color:#fff;padding:56px 20px 64px;
+}
+.hero-inner{max-width:var(--maxw);margin:0 auto;position:relative;z-index:2}
+.hero h1{
+  font-size:clamp(30px,6vw,54px);font-weight:800;margin:0 0 10px;line-height:1.3;
+}
+.hero h1 span{color:var(--yellow)}
+.hero p{max-width:640px;color:#cfc8e2;font-size:17px}
+.badge-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.badge{
+  padding:9px 16px;border-radius:999px;font-weight:600;font-size:14px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18)
+}
+.badge.accent{background:var(--red);border-color:transparent}
+
+main{max-width:var(--maxw);margin:0 auto;padding:20px}
+.section-title{
+  display:flex;align-items:center;gap:12px;margin:38px 4px 18px;
+  font-size:26px;font-weight:800;
+}
+.section-title::before{
+  content:"";width:8px;height:26px;border-radius:6px;background:var(--blue);
+}
+
+.article{
+  background:var(--panel);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  margin:18px 0;
+  display:grid;grid-template-columns:340px 1fr;
+}
+.article .media{position:relative;background:#0e0b16}
+.article .media img{
+  width:100%;height:100%;min-height:280px;object-fit:cover;
+}
+.article .media .tag{
+  position:absolute;top:14px;right:14px;
+  background:var(--yellow);color:#201800;font-weight:800;font-size:12px;
+  padding:6px 12px;border-radius:999px;letter-spacing:.5px;
+}
+.article .body{padding:24px 26px;display:flex;flex-direction:column;gap:12px;justify-content:center}
+.article .meta{color:var(--muted);font-size:13px;font-weight:600}
+.article h2{margin:0;font-size:23px;font-weight:800;line-height:1.4}
+.article p{margin:0;color:#3a3350}
+
+.comicman{
+  display:inline-flex;align-items:center;gap:10px;
+  margin-top:6px;
+  background:linear-gradient(90deg,var(--red),var(--violet));
+  color:#fff;font-weight:800;font-size:15px;
+  padding:13px 20px;border-radius:14px;
+  box-shadow:0 8px 18px rgba(228,0,43,.28);
+  transition:transform .15s ease, box-shadow .15s ease;
+  align-self:flex-start;
+}
+.comicman:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(228,0,43,.38)}
+.comicman svg{width:20px;height:20px;flex:none}
+
+.gallery{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:16px;margin:14px 0;
+}
+.gallery .g-item{
+  background:var(--panel);border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.gallery .g-item img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.gallery .g-item .cap{padding:14px 16px}
+.gallery .g-item .cap h3{margin:0 0 4px;font-size:16px;font-weight:800}
+.gallery .g-item .cap a{
+  font-size:13px;font-weight:700;color:var(--red);
+  display:inline-block;margin-top:6px;
+}
+.gallery .g-item .cap a:hover{text-decoration:underline}
+
+footer{
+  background:var(--ink);color:#cfc8e2;
+  margin-top:50px;padding:34px 20px;font-size:14px;
+}
+.footer-inner{max-width:var(--maxw);margin:0 auto;display:flex;
+  justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer a{color:var(--yellow);font-weight:600}
+
+@media(max-width:760px){
+  .article{grid-template-columns:1fr}
+  .article .media img{min-height:220px}
+  nav.menu{justify-content:center}
+  .header-inner{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="header-inner">
+    <div class="brand"><span class="dot"></span>کازمالجی ورلد <span class="brand-url">www.thecosmologicalworld.ir</span></div>
+    <nav class="menu">
+      <a href="#home" class="active">خانه</a>
+      <a href="#articles">مقالات</a>
+      <a href="#gallery">گالری</a>
+      <a href="https://comicman.ir" target="_blank" rel="noopener">کمیکام ↗</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <h1>دنیای <span>کمیک</span>، انیمه و هنر — به فارسی</h1>
+    <p>کازمالجی ورلد؛ جایی برای نوشتن، معرفی و مرور دنیای دنیامون. هر مقاله با تصویر و لینک مستقیم به صفحه‌ی اثر در کمیکام.</p>
+    <div class="badge-row">
+      <a class="badge accent" href="https://www.thecosmologicalworld.ir" target="_blank" rel="noopener">کازمالجی ورلد — thecosmologicalworld.ir</a>
+      <span class="badge">مقالات</span>
+      <span class="badge">گالری</span>
+      <span class="badge">لینک کمیکام</span>
+    </div>
+  </div>
+</section>
+
+<main id="articles">
+  <h2 class="section-title">مقالات</h2>
+
+  <!-- article -->
+  <article class="article">
+    <div class="media">
+      <span class="tag">معرفی</span>
+      <img src="https://placehold.co/680x420/e4002b/ffffff?text=تصویر+مقاله" alt="کاور مقاله">
+    </div>
+    <div class="body">
+      <div class="meta">۱۹ سپتامبر ۲۰۲۶ · ۵ دقیقه</div>
+      <h2>عنوان مقاله‌ی اول اینجاست</h2>
+      <p>متن توضیحی مقاله. این‌جا می‌تونی هرچیزی بنویسی؛ پاراگراف‌های بیشتری هم. بعد از عکس، لینک کمیکام به‌صورت دکمه‌ی رنگی زیرش قرار می‌گیرد.</p>
+      <a class="comicman" href="https://comicman.ir" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        باز کردن در کمیکام
+      </a>
+    </div>
+  </article>
+  <!-- /article -->
+
+  <!-- article -->
+  <article class="article">
+    <div class="media">
+      <span class="tag">گزارش</span>
+      <img src="https://placehold.co/680x420/2f5fe0/ffffff?text=تصویر+دوم" alt="کاور مقاله">
+    </div>
+    <div class="body">
+      <div class="meta">۱۵ سپتامبر ۲۰۲۶ · ۳ دقیقه</div>
+      <h2>عنوان مقاله‌ی دوم</h2>
+      <p>یه نمونه‌ی دیگر. هر بلوک <code>article</code> را می‌تونی کپی کنی و برای مقاله‌ی بعدی استفاده کنی؛ فقط عکس، عنوان، متن و لینک کمیکام را عوض کن.</p>
+      <a class="comicman" href="https://comicman.ir" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        باز کردن در کمیکام
+      </a>
+    </div>
+  </article>
+  <!-- /article -->
+
+  <h2 class="section-title" id="gallery">گالری</h2>
+  <div class="gallery">
+    <div class="g-item">
+      <img src="https://placehold.co/480x360/7a3ff0/ffffff?text=غیر+الاعمالی" alt="">
+      <div class="cap">
+        <h3>اسم اثر</h3>
+        <a href="https://comicman.ir" target="_blank" rel="noopener">باز کردن در کمیکام ↗</a>
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="https://placehold.co/480x360/e4002b/ffffff?text=کتاب" alt="">
+      <div class="cap">
+        <h3>اسم اثر</h3>
+        <a href="https://comicman.ir" target="_blank" rel="noopener">باز کردن در کمیکام ↗</a>
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="https://placehold.co/480x360/2f5fe0/ffffff?text=انیمه" alt="">
+      <div class="cap">
+        <h3>اسم اثر</h3>
+        <a href="https://comicman.ir" target="_blank" rel="noopener">باز کردن در کمیکام ↗</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>© ۲۰۲۶ <strong>کازمالجی ورلد</strong> — <a href="https://www.thecosmologicalworld.ir" target="_blank" rel="noopener">www.thecosmologicalworld.ir</a></div>
+    <div>لینک اثرها: <a href="https://t.me/Thecosmologicalworldarchive" target="_blank" rel="noopener">آرشیو تلگرام ↗</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
