@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>کازمالجی ورلد — دنیای کمیک و هنر</title>
-<meta name="description" content="کازمالجی ورلد؛ مجله‌ی فارسی کمیک، انیمه و هنر. مقالات، گالری و لینک‌های کمیکام.">
+<meta name="description" content="کازمالجی ورلد؛ مجله‌ی فارسی کمیک، انیمه و هنر. مقالات، گالری و آرشیو تلگرام.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
      1) یک بلوک <article> را کپی کن (از <!-- article --> تا <!-- /article -->)
      2) جای <img src="..."> عکس خودت را بگذار (آدرس کامل یا فایل محلی)
      3) متن را ویرایش کن
-     4) لینک کمیکام را در href دکمه‌ی «باز کردن در کمیکام» بگذار
+     4) لینک آرشیو تلگرام را در href دکمه‌ی «باز کردن در آرشیو تلگرام» بگذار
    همه‌چیز در همین یک فایل است؛ CSS و JS درون آن است.
    ============================================================ */
 
@@ -126,7 +126,7 @@ main{max-width:var(--maxw);margin:0 auto;padding:20px}
 .article h2{margin:0;font-size:23px;font-weight:800;line-height:1.4}
 .article p{margin:0;color:#3a3350}
 
-.comicman{
+.archive{
   display:inline-flex;align-items:center;gap:10px;
   margin-top:6px;
   background:linear-gradient(90deg,var(--red),var(--violet));
@@ -136,8 +136,8 @@ main{max-width:var(--maxw);margin:0 auto;padding:20px}
   transition:transform .15s ease, box-shadow .15s ease;
   align-self:flex-start;
 }
-.comicman:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(228,0,43,.38)}
-.comicman svg{width:20px;height:20px;flex:none}
+.archive:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(228,0,43,.38)}
+.archive svg{width:20px;height:20px;flex:none}
 
 .gallery{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
@@ -181,7 +181,7 @@ footer a{color:var(--yellow);font-weight:600}
       <a href="#home" class="active">خانه</a>
       <a href="#articles">مقالات</a>
       <a href="#gallery">گالری</a>
-      <a href="https://comicman.ir" target="_blank" rel="noopener">کمیکام ↗</a>
+      <a href="https://t.me/Thecosmologicalworldarchive" target="_blank" rel="noopener">آرشیو تلگرام ↗</a>
     </nav>
   </div>
 </header>
@@ -189,12 +189,12 @@ footer a{color:var(--yellow);font-weight:600}
 <section class="hero" id="home">
   <div class="hero-inner">
     <h1>دنیای <span>کمیک</span>، انیمه و هنر — به فارسی</h1>
-    <p>کازمالجی ورلد؛ جایی برای نوشتن، معرفی و مرور دنیای دنیامون. هر مقاله با تصویر و لینک مستقیم به صفحه‌ی اثر در کمیکام.</p>
+    <p>کازمالجی ورلد؛ جایی برای نوشتن، معرفی و مرور دنیای دنیامون. هر مقاله با تصویر و لینک مستقیم به آرشیو تلگرام.</p>
     <div class="badge-row">
       <a class="badge accent" href="https://www.thecosmologicalworld.ir" target="_blank" rel="noopener">کازمالجی ورلد — thecosmologicalworld.ir</a>
       <span class="badge">مقالات</span>
       <span class="badge">گالری</span>
-      <span class="badge">لینک کمیکام</span>
+      <a class="badge" href="https://t.me/Thecosmologicalworldarchive" target="_blank" rel="noopener">آرشیو تلگرام ↗</a>
     </div>
   </div>
 </section>
@@ -211,10 +211,10 @@ footer a{color:var(--yellow);font-weight:600}
     <div class="body">
       <div class="meta">۱۹ سپتامبر ۲۰۲۶ · ۵ دقیقه</div>
       <h2>عنوان مقاله‌ی اول اینجاست</h2>
-      <p>متن توضیحی مقاله. این‌جا می‌تونی هرچیزی بنویسی؛ پاراگراف‌های بیشتری هم. بعد از عکس، لینک کمیکام به‌صورت دکمه‌ی رنگی زیرش قرار می‌گیرد.</p>
-      <a class="comicman" href="https://comicman.ir" target="_blank" rel="noopener">
+      <p>متن توضیحی مقاله. این‌جا می‌تونی هرچیزی بنویسی؛ پاراگراف‌های بیشتری هم. بعد از عکس، لینک آرشیو تلگرام به‌صورت دکمه‌ی رنگی زیرش قرار می‌گیرد.</p>
+      <a class="archive" href="https://t.me/Thecosmologicalworldarchive" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        باز کردن در کمیکام
+        باز کردن در آرشیو تلگرام
       </a>
     </div>
   </article>
@@ -229,10 +229,10 @@ footer a{color:var(--yellow);font-weight:600}
     <div class="body">
       <div class="meta">۱۵ سپتامبر ۲۰۲۶ · ۳ دقیقه</div>
       <h2>عنوان مقاله‌ی دوم</h2>
-      <p>یه نمونه‌ی دیگر. هر بلوک <code>article</code> را می‌تونی کپی کنی و برای مقاله‌ی بعدی استفاده کنی؛ فقط عکس، عنوان، متن و لینک کمیکام را عوض کن.</p>
-      <a class="comicman" href="https://comicman.ir" target="_blank" rel="noopener">
+      <p>یه نمونه‌ی دیگر. هر بلوک <code>article</code> را می‌تونی کپی کنی و برای مقاله‌ی بعدی استفاده کنی؛ فقط عکس، عنوان، متن و لینک آرشیو تلگرام را عوض کن.</p>
+      <a class="archive" href="https://t.me/Thecosmologicalworldarchive" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        باز کردن در کمیکام
+        باز کردن در آرشیو تلگرام
       </a>
     </div>
   </article>
@@ -244,21 +244,21 @@ footer a{color:var(--yellow);font-weight:600}
       <img src="https://placehold.co/480x360/7a3ff0/ffffff?text=غیر+الاعمالی" alt="">
       <div class="cap">
         <h3>اسم اثر</h3>
-        <a href="https://comicman.ir" target="_blank" rel="noopener">باز کردن در کمیکام ↗</a>
+        <a href="https://t.me/Thecosmologicalworldarchive" target="_blank" rel="noopener">آرشیو تلگرام ↗</a>
       </div>
     </div>
     <div class="g-item">
       <img src="https://placehold.co/480x360/e4002b/ffffff?text=کتاب" alt="">
       <div class="cap">
         <h3>اسم اثر</h3>
-        <a href="https://comicman.ir" target="_blank" rel="noopener">باز کردن در کمیکام ↗</a>
+        <a href="https://t.me/Thecosmologicalworldarchive" target="_blank" rel="noopener">آرشیو تلگرام ↗</a>
       </div>
     </div>
     <div class="g-item">
       <img src="https://placehold.co/480x360/2f5fe0/ffffff?text=انیمه" alt="">
       <div class="cap">
         <h3>اسم اثر</h3>
-        <a href="https://comicman.ir" target="_blank" rel="noopener">باز کردن در کمیکام ↗</a>
+        <a href="https://t.me/Thecosmologicalworldarchive" target="_blank" rel="noopener">آرشیو تلگرام ↗</a>
       </div>
     </div>
   </div>
