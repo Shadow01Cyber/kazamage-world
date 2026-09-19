@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+
+Sitemap: https://shadow01cyber.github.io/kazamage-world/sitemap.xml
